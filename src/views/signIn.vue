@@ -2,49 +2,29 @@
   <div class="container py-5">
     <form class="w-100" @submit.prevent.stop="handleSubmit">
       <div class="text-center mb-4">
-        <h1 class="h3 mb-3 font-weight-normal">
-          Sign In
-        </h1>
+        <h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
       </div>
 
+      <!-- email輸入欄位 -->
       <div class="form-label-group mb-2">
         <label for="email">email</label>
-        <input
-          id="email"
-          name="email"
-          v-model="email"
-          type="email"
-          class="form-control"
-          placeholder="email"
-          required
-          autofocus
-        >
+        <input id="email" name="email" v-model="email" type="email" class="form-control" placeholder="email"
+          required autofocus>
       </div>
 
+      <!-- password輸入欄位 -->
       <div class="form-label-group mb-3">
         <label for="password">Password</label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          v-model="password"
-          class="form-control"
-          placeholder="Password"
-          required
-        >
+        <input id="password" name="password" type="password" v-model="password" class="form-control" 
+          placeholder="Password" required>
       </div>
 
-      <button
-        class="btn btn-lg btn-primary btn-block mb-3"
-        type="submit"
-      >
-        Submit
-      </button>
+      <!-- 送出表單按鈕 -->
+      <button class="btn btn-lg btn-primary btn-block mb-3" type="submit">Submit</button>
 
+      <!-- 註冊頁面 -->
       <div class="text-center mb-3">
-        <p>
-          <router-link to="/signup">Sign Up</router-link>
-        </p>
+        <p><router-link to="/signup">Sign Up</router-link></p>
       </div>
 
       <p class="mt-5 mb-3 text-muted text-center">
@@ -55,26 +35,29 @@
 </template>
 
 <script>
- /* eslint-disable */ 
+/* eslint-disable */
+
 export default {
-  name: 'SignIn',
-  data(){
-      return {
-          email:"",
-          password:""
-      }
+  name: "SignIn",
+
+  data() {
+    return {
+      email: "",
+      password: ""
+    };
   },
-  methods:{
-    handleSubmit (e) {
+  
+  methods: {
+    handleSubmit(e) {
       const data = JSON.stringify({
         email: this.email,
         password: this.password
-      })
+      });
 
       // TODO: 向後端驗證使用者登入資訊是否合法
-      console.log('data', data)
+      console.log("data", data);
     }
   }
-}
+};
 </script>
 

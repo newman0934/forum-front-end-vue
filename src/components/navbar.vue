@@ -1,21 +1,11 @@
 <template>
   <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-    <router-link
-      class="navbar-brand"
-      to="/"
-    >
+    <router-link class="navbar-brand" to="/">
       餐廳評論網
     </router-link>
 
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+      aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon" />
     </button>
 
@@ -31,14 +21,14 @@
           <button type="button" class="btn btn-sm btn-outline-success my-2 my-sm-0">登出</button>
         </template>
 
-
       </div>
     </div>
   </nav>
 </template>
 
 <script>
-/* eslint-disable */ 
+/* eslint-disable */
+
 const dummyUser = {
   currentUser: {
     id: 1,
@@ -52,6 +42,7 @@ const dummyUser = {
 
 export default {
   name: "Navbar",
+
   data() {
     return {
       currentUser: {
@@ -64,17 +55,19 @@ export default {
       isAuthenticated: false
     };
   },
-  created(){
-      this.fetchUser()
+
+  created() {
+    this.fetchUser();
   },
-  methods:{
-      fetchUser(){
-          this.currentUser = {
-              ...this.currentUser,
-              ...dummyUser.currentUser
-          }
-          this.isAuthenticated = dummyUser.isAuthenticated
-      }
+
+  methods: {
+    fetchUser() {
+      this.currentUser = {
+        ...this.currentUser,
+        ...dummyUser.currentUser
+      };
+      this.isAuthenticated = dummyUser.isAuthenticated;
+    }
   }
 };
 </script>

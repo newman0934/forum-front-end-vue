@@ -4,10 +4,7 @@
       最新評論
     </div>
     <div class="card-body">
-      <div
-        v-for="comment in comments"
-        :key="comment.id"
-      >
+      <div v-for="comment in comments" :key="comment.id">
         <h4>
           <!-- TODO: change into router-link -->
           <a href="#"> {{ comment.Restaurant.name }} </a>
@@ -15,8 +12,7 @@
         <p>{{ comment.text }}</p>by
         <!-- TODO: change into router-link -->
         <a href="#"> {{ comment.User.name }} </a>
-        at
-        {{ comment.createdAt | fromNow }}
+        at{{ comment.createdAt | fromNow }}
         <hr>
       </div>
     </div>

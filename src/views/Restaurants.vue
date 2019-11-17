@@ -290,6 +290,7 @@ export default {
     RestaurantsNavPills,
     RestaurantsPagination
   },
+
   data() {
     return {
       categories: [],
@@ -299,9 +300,11 @@ export default {
       totalPage: -1
     };
   },
+
   created() {
     this.fetchRestaurants();
   },
+  
   methods: {
     fetchRestaurants() {
       this.categories = dummyData.categories;
