@@ -9,6 +9,7 @@ import RestaurantsTop from "../views/RestaurantsTop.vue"
 import UsersTop from "../views/UsersTop.vue"
 import Restaurant from "../views/Restaurant.vue"
 import RestaurantDashboard from "../views/RestaurantDashboard.vue"
+import User from "../views/User.vue"
 
 Vue.use(VueRouter)
 
@@ -57,6 +58,11 @@ const routes = [
     path:"/restaurants/:id/dashboard",
     name: "restaurant-dashboard",
     component: RestaurantDashboard
+  },
+  {
+    path:"/users/:id",
+    name:"user",
+    component:User
   },
   {
     path:"*",
