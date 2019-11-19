@@ -2,17 +2,34 @@
   <div class="container py-5">
     <h1>餐廳描述頁</h1>
     <!-- 餐廳資訊頁 RestaurantDetail -->
-    <RestaurantDetail :initial-restaurant="restaurant"/>
+    <RestaurantDetail :initial-restaurant="restaurant" />
     <hr />
     <!-- 餐廳評論 RestaurantComments -->
-    <RestaurantComments :restaurant-comments="restaurantComments" @after-delete-comment="afterDeleteComment"/>
+    <RestaurantComments
+      :restaurant-comments="restaurantComments"
+      @after-delete-comment="afterDeleteComment"
+    />
     <!-- 新增評論 CreateComment -->
+    <CreateComment :restaurant-id="restaurant.id" />
   </div>
 </template>
 <script>
 import RestaurantDetail from "../components/RestaurantDetail.vue";
-import RestaurantComments from "../components/RestaurantComments.vue"
+import RestaurantComments from "../components/RestaurantComments.vue";
+import CreateComment from "../components/CreateComment.vue";
 /* eslint-disable */
+
+const dummyUser = {
+  currentUser: {
+    id: 1,
+    name: '管理者',
+    email: 'root@example.com',
+    image: 'https://i.pravatar.cc/300',
+    isAdmin: true
+  },
+  isAuthenticated: true
+}
+
 const dummyData = {
   restaurant: {
     id: 1,
@@ -60,26 +77,28 @@ const dummyData = {
 };
 
 export default {
-  data () {
+  data() {
     return {
       restaurant: {
         id: -1,
-        name: '',
-        categoryName: '',
-        image: '',
-        openingHours: '',
-        tel: '',
-        address: '',
-        description: '',
+        name: "",
+        categoryName: "",
+        image: "",
+        openingHours: "",
+        tel: "",
+        address: "",
+        description: "",
         isFavorited: false,
         isLiked: false
       },
+      currentUser:dummyUser.currentUser,
       restaurantComments: []
-    }
+    };
   },
   components: {
-      RestaurantDetail,
-      RestaurantComments
+    RestaurantDetail,
+    RestaurantComments,
+    CreateComment
   },
   created() {
     const { id: restaurantId } = this.$route.params;
@@ -102,10 +121,23 @@ export default {
 
       this.restaurantComments = dummyData.restaurant.Comments;
     },
-    afterDeleteComment (commentId){
+    afterDeleteComment(commentId) {
       this.restaurantComments = this.restaurantComments.filter(
         comment => comment.id !== commentId
-      )
+      );
+    },
+    afterCreateComment(payload) {
+      const { commentId, restaurantId, text } = payload;
+      this.restaurantComments.push({
+        id: commentId,
+        RestaurantId: restaurantId,
+        User: {
+          id: this.currentUser.id,
+          name: this.currentUser.name
+        },
+        text,
+        createdAt: new Date()
+      });
     }
   }
 };
