@@ -8,6 +8,7 @@ import RestaurantsFeeds from "../views/RestaurantsFeeds.vue"
 import RestaurantsTop from "../views/RestaurantsTop.vue"
 import UsersTop from "../views/UsersTop.vue"
 import Restaurant from "../views/Restaurant.vue"
+import RestaurantDashboard from "../views/RestaurantDashboard.vue"
 
 Vue.use(VueRouter)
 
@@ -51,6 +52,11 @@ const routes = [
     path:"/restaurants/:id",
     name: "restaurant",
     component:Restaurant
+  },
+  {
+    path:"/restaurants/:id/dashboard",
+    name: "restaurant-dashboard",
+    component: RestaurantDashboard
   },
   {
     path:"*",
