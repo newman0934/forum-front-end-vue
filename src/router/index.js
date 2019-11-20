@@ -13,6 +13,7 @@ import User from "../views/User.vue"
 import AdminRestaurants from "../views/AdminRestaurants.vue"
 import AdminRestaurant from "../views/AdminRestaurant.vue"
 import AdminRestaurantNew from "../views/AdminRestaurantNew.vue"
+import AdminRestaurantEdit from "../views/AdminRestaurantEdit.vue"
 
 Vue.use(VueRouter)
 
@@ -41,6 +42,11 @@ const routes = [
     path:"/admin/restaurants/:id",
     name:"admin-restaurant",
     component:AdminRestaurant
+  },
+  {
+    path:"/admin/restaurants/:id/edit",
+    name:"admin-restaurant-edit",
+    component:AdminRestaurantEdit
   },
   {
     path: '/signin',
