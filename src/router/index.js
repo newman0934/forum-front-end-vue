@@ -10,6 +10,8 @@ import UsersTop from "../views/UsersTop.vue"
 import Restaurant from "../views/Restaurant.vue"
 import RestaurantDashboard from "../views/RestaurantDashboard.vue"
 import User from "../views/User.vue"
+import AdminRestaurants from "../views/AdminRestaurants.vue"
+import AdminRestaurant from "../views/AdminRestaurant.vue"
 
 Vue.use(VueRouter)
 
@@ -18,6 +20,21 @@ const routes = [
     path:"/",
     name:"root",
     redirect: "/restaurants"
+  },
+  {
+    path:"/admin",
+    exact:true,
+    redirect:"/admin/restaurants"
+  },
+  {
+    path:"/admin/restaurants",
+    name:"admin-restaurants",
+    component:AdminRestaurants
+  },
+  {
+    path:"/admin/restaurants/:id",
+    name:"admin-restaurant",
+    component:AdminRestaurant
   },
   {
     path: '/signin',
