@@ -2,11 +2,7 @@
   <div class="card mb-3">
     <div class="row no-gutters">
       <div class="col-md-4">
-        <img
-          :src="user.image | emptyImage"
-          width="300px"
-          height="300px"
-        >
+        <img :src="user.image | emptyImage" width="300px" height="300px">
       </div>
       <div class="col-md-8">
         <div class="card-body">
@@ -30,15 +26,18 @@
               <strong>{{ user.followersLength }}</strong> followers (追隨者)
             </li>
           </ul>
+
           <template v-if="isCurrentUser">
-            <a href="#" class="btn btn-primary">
+            <router-link :to="{name: 'user-edit', params:{id:user.id }}" class="btn btn-primary">
               Edit
-            </a>
+            </router-link>
           </template>
+
           <template v-else>
             <button v-if="isFollowed" type="button" class="btn btn-danger" @click.stop.prevent="removeFollowing()">
               取消追蹤
             </button>
+
             <button v-else type="button" class="btn btn-primary" @click.stop.prevent="addFollowing()">
               追蹤
             </button>
@@ -50,6 +49,7 @@
 </template>
 
 <script>
+
 import {emptyImageFilter} from "./../utils/mixins.js"
 
 export default {
