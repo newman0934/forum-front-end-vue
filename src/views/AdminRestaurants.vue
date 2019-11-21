@@ -114,7 +114,6 @@ const dummyData = {
     }
   ]
 };
-
 export default {
   components: {
     AdminNav,
@@ -128,7 +127,6 @@ export default {
   created(){
       this.fetchRestaurants()
   },
-
   methods:{
       fetchRestaurants(){
           this.restaurants = dummyData.restaurants

@@ -3,7 +3,7 @@
 
     <div class="card mb-4">
 
-      <img class="card-img-top" src="https://via.placeholder.com/300" alt="Card image cap" width="286px" height="180px">
+      <img class="card-img-top" :src="restaurant.image" alt="Card image cap" width="286px" height="180px">
       
       <div class="card-body">
 
