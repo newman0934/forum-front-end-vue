@@ -42,60 +42,43 @@
 
 <script>
 /* eslint-disable */
-import AdminNav from "@/components/AdminNav";
+import AdminNav from "./../components/AdminNav";
+import adminAPI from "./../apis/admin.js";
+import { Toast } from "./../utils/helpers.js";
 import uuid from "uuid/v4";
-//  2. 定義暫時使用的資料
-const dummyData = {
-  categories: [
-    {
-      id: 1,
-      name: "中式料理",
-      createdAt: "2019-06-22T09:00:43.000Z",
-      updatedAt: "2019-06-22T09:00:43.000Z"
-    },
-    {
-      id: 2,
-      name: "日本料理",
-      createdAt: "2019-06-22T09:00:43.000Z",
-      updatedAt: "2019-06-22T09:00:43.000Z"
-    },
-    {
-      id: 3,
-      name: "義大利料理",
-      createdAt: "2019-06-22T09:00:43.000Z",
-      updatedAt: "2019-06-22T09:00:43.000Z"
-    },
-    {
-      id: 4,
-      name: "墨西哥料理",
-      createdAt: "2019-06-22T09:00:43.000Z",
-      updatedAt: "2019-06-22T09:00:43.000Z"
-    }
-  ]
-};
 
 export default {
   components: {
     AdminNav
   },
-  // 3. 定義 Vue 中使用的 data 資料
+
   data() {
     return {
       newCategoryName: "",
       categories: []
     };
   },
-  // 5. 調用 `fetchCategories` 方法
+
   created() {
     this.fetchCategories();
   },
   methods: {
-    // 4. 定義 `fetchCategories` 方法，把 `dummyData` 帶入 Vue 物件
-    fetchCategories() {
-      this.categories = dummyData.categories.map(category => ({
-        ...category,
-        isEditing: false
-      }));
+    async fetchCategories() {
+      try {
+        const { data, statusText } = await adminAPI.categories.get();
+        if (statusText !== "OK") {
+          throw new Error(statusText);
+        }
+        this.categories = data.categories.map(category => ({
+          ...category,
+          isEditing: false
+        }));
+      } catch (error) {
+        Toast.fire({
+          type: "error",
+          title: "無法取得餐廳類別，請稍後再試"
+        });
+      }
     },
     createCategory(name) {
       this.categories.push({
