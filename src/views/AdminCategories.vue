@@ -55,13 +55,14 @@ export default {
     return {
       newCategoryName: "",
       categories: [],
-      isProcessing: false
+      isProcessing: false,
     };
   },
 
   created() {
     this.fetchCategories();
   },
+
   methods: {
     async fetchCategories() {
       try {
@@ -94,9 +95,9 @@ export default {
           ...data.category,
           isEditing: false
         });
-
         this.isProcessing = false;
         this.newCategoryName = "";
+        this.fetchCategories()
       } catch (error) {
         this.isProcessing = false;
         Toast.fire({
