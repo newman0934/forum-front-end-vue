@@ -22,6 +22,16 @@ export default {
       headers: { Authorization: `Bearer ${getToken()}` }
     });
   },
+  getCurrentUser(){
+    return apiHelper.get("/get_current_user", {
+      headers: { Authorization: `Bearer ${getToken()}` }
+    })
+  },
+  get({userid}){
+    return apiHelper.get(`/users/${userid}`, {
+      headers: { Authorization: `Bearer ${getToken()}` }
+    })
+  },
   getTopUsers() {
     return apiHelper.get("users/top", {
       headers: { Authorization: `Bearer ${getToken()}` }

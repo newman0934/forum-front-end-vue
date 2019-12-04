@@ -17,6 +17,7 @@ import AdminRestaurantEdit from "../views/AdminRestaurantEdit.vue"
 import UserEdit from "../views/UserEdit.vue"
 import AdminCategories from "../views/AdminCategories.vue"
 import AdminUsers from "../views/AdminUsers.vue"
+import store from '../store/index'
 
 Vue.use(VueRouter)
 
@@ -122,6 +123,11 @@ const routes = [
 const router = new VueRouter({
   linkExactActiveClass: "active",
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  store.dispatch('fetchCurrentUser')
+  next()
 })
 
 export default router
