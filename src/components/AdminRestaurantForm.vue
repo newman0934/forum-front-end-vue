@@ -144,6 +144,14 @@ export default {
       default: false
     }
   },
+  watch: {
+    initialRestaurant(restaurant) {
+      this.restaurant = {
+        ...this.restaurant,
+        ...restaurant
+      };
+    }
+  },
   created() {
     this.fetchCategories();
     this.restaurant = {
